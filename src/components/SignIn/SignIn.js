@@ -1,38 +1,32 @@
 import React, { Component } from "react";
 import Tilt from "react-tilt";
 
-class Register extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signUpEmail: "",
-      signUpPassword: "",
-      signUpName: "",
+      signInEmail: "",
+      signInPassword: "",
     };
   }
 
   onEmailChange = (event) => {
-    this.setState({ signUpEmail: event.target.value });
+    this.setState({ signInEmail: event.target.value });
   };
 
   onPasswordChange = (event) => {
-    this.setState({ signUpPassword: event.target.value });
+    this.setState({ signInPassword: event.target.value });
   };
 
-  onNameChange = (event) => {
-    this.setState({ signUpName: event.target.value });
-  };
-
-  onSubmitSignUp = () => {
-    fetch("https://nameless-caverns-14153.herokuapp.com/register", {
+  onSubmitSignIn = () => {
+    fetch("https://nameless-caverns-14153.herokuapp.com/signin", {
       method: "post",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        email: this.state.signUpEmail,
-        password: this.state.signUpPassword,
-        name: this.state.signUpName,
+        email: this.state.signInEmail,
+        password: this.state.signInPassword,
       }),
     })
       .then((res) => res.json())
@@ -43,8 +37,8 @@ class Register extends Component {
         }
       });
   };
-
   render() {
+    const { onRouteChange } = this.props;
     return (
       <Tilt
         className='br3 shadow-2 center ba shadow-5 b--black-10 w-100 mv4 w-50-m  mw6'
@@ -53,19 +47,7 @@ class Register extends Component {
         <main className='ma0 w-100 center tilt-inner black-80 mv5'>
           <div className='measure'>
             <fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
-              <legend className='f1 fw6 ph0 mh0'>Register</legend>
-              <div className='mt3'>
-                <label className='db fw6 lh-copy f6' htmlFor='name'>
-                  Name
-                </label>
-                <input
-                  className='pa2 input-reset ba bg-transparent hover-bg-green hover-white w-100'
-                  type='text'
-                  name='name'
-                  id='name'
-                  onChange={this.onNameChange}
-                />
-              </div>
+              <legend className='f1 fw6 ph0 mh0'>Sign In</legend>
               <div className='mt3'>
                 <label className='db fw6 lh-copy f6' htmlFor='email-address'>
                   Email
@@ -95,9 +77,17 @@ class Register extends Component {
               <input
                 className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
                 type='submit'
-                value='Register'
-                onClick={this.onSubmitSignUp}
+                value='Sign in'
+                onClick={this.onSubmitSignIn}
               />
+            </div>
+            <div className='br2 shadow-2 lh-copy mt3'>
+              <p
+                onClick={() => onRouteChange("register")}
+                className='f6 link dim black db pointer'
+              >
+                Register
+              </p>
             </div>
           </div>
         </main>
@@ -106,4 +96,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default SignIn;
