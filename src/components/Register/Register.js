@@ -24,7 +24,7 @@ class Register extends Component {
   };
 
   onSubmitSignUp = () => {
-    fetch("https://nameless-caverns-14153.herokuapp.com/register", {
+    fetch("https://sleepy-peak-21429.herokuapp.com/register", {
       method: "post",
       headers: {
         "Content-type": "application/json",

@@ -85,7 +85,7 @@ class App extends Component {
 
   onPictureSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch("https://nameless-caverns-14153.herokuapp.com/imageUrl", {
+    fetch("https://sleepy-peak-21429.herokuapp.com/imageUrl", {
       method: "post",
       headers: {
         "Content-type": "application/json",
@@ -99,7 +99,7 @@ class App extends Component {
       })
       .then((response) => {
         if (response) {
-          fetch("https://nameless-caverns-14153.herokuapp.com/image", {
+          fetch("https://sleepy-peak-21429.herokuapp.com/image", {
             method: "put",
             headers: {
               "Content-type": "application/json",
